@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Calculator',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Simple Flutter Calculator'),
     );
   }
 }
@@ -36,23 +36,34 @@ class _MyHomePageState extends State<MyHomePage> {
   void add() {
     setState(() {
       result = int.parse(firstNumController.text) + int.parse(secondNumCotroller.text);
+      if(result < 30){
+        FlutterToastr.show("Did you really needed a calculator for this?", context,
+            duration: FlutterToastr.lengthLong, position: FlutterToastr.top);
+      }else {
+        FlutterToastr.show("Entries Succesfully Added!", context,
+            duration: FlutterToastr.lengthShort, position: FlutterToastr.top);
+      }
     });
   }
   void subtract() {
     setState(() {
       result = int.parse(firstNumController.text) - int.parse(secondNumCotroller.text);
+      FlutterToastr.show("Entries Succesfully Deducted!", context, duration: FlutterToastr.lengthShort, position:  FlutterToastr.top);
+
     });
   }
   void multiply() {
     setState(() {
-
       result = int.parse(firstNumController.text) * int.parse(secondNumCotroller.text);
+      FlutterToastr.show("Entries Succesfully Multiplied!", context, duration: FlutterToastr.lengthShort, position:  FlutterToastr.top);
+
     });
   }
   void divide() {
     setState(() {
-
       result = int.parse(firstNumController.text) ~/ int.parse(secondNumCotroller.text);
+      FlutterToastr.show("Entries Succesfully Divided!", context, duration: FlutterToastr.lengthShort, position:  FlutterToastr.top);
+
     });
   }
   void clear() {
@@ -62,9 +73,11 @@ class _MyHomePageState extends State<MyHomePage> {
       firstNumController.clear();
       secondNumCotroller.clear();
       lastNameController.clear();
+      FlutterToastr.show("Entries Succesfully Cleared!", context, duration: FlutterToastr.lengthShort, position:  FlutterToastr.top);
 
     });
   }
+
 
   TextEditingController firstNumController = TextEditingController();
   TextEditingController secondNumCotroller = TextEditingController();
