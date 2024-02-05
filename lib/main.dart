@@ -55,7 +55,16 @@ class _MyHomePageState extends State<MyHomePage> {
       result = int.parse(firstNumController.text) ~/ int.parse(secondNumCotroller.text);
     });
   }
+  void clear() {
+    setState(() {
 
+      result = 0 ;
+      firstNumController.clear();
+      secondNumCotroller.clear();
+      lastNameController.clear();
+
+    });
+  }
 
   TextEditingController firstNumController = TextEditingController();
   TextEditingController secondNumCotroller = TextEditingController();
@@ -101,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 100),
-              child: Text( "ANSWER ${result}",
+              child: Text( "ANSWER: ${result}",
                 ),
               ),
           ],
@@ -140,6 +149,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: divide,
                     tooltip: "Divide",
                     child: const Icon(Icons.percent),
+                  )),
+              Positioned(
+                  right: 0,
+                  child: FloatingActionButton(
+                    onPressed: clear,
+                    tooltip: "CLEAR",
+                    child: const Icon(Icons.stop_circle),
                   )),
             ],
           )
